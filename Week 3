@@ -1,0 +1,125 @@
+# Red Team Tactics & Offensive Security Learning Path
+
+Welcome to the **Red Team Tactics & Offensive Security Learning Path** repository. This project serves as a comprehensive structural framework, syllabus, and lab documentation hub for mastering adversarial simulations, vulnerability research, and structured offensive engagements. 
+
+The curriculum maps core offensive concepts directly to the **MITRE ATT&CK® Framework** and translates theoretical research into reproducible, isolated lab environments.
+
+---
+
+## 📑 Core Syllabus Modules
+
+### 1. Advanced Reconnaissance and OSINT
+*   **Passive Reconnaissance:** Gathering intelligence without direct target interaction (DNS enumeration, WHOIS parsing, metadata extraction). Locating exposed infrastructure via internet-wide scanners like Shodan.
+    *   *MITRE ATT&CK:* [T1595.002 - Active Scanning](https://attack.mitre.org/techniques/T1595/002/)
+*   **Active Reconnaissance:** Stealth port scanning, service enumeration, and OS fingerprinting using targeted scripting engines (e.g., Nmap Scripting Engine).
+    *   *MITRE ATT&CK:* [T1046 - Network Service Scanning](https://attack.mitre.org/techniques/T1046/)
+*   **OSINT Frameworks:** Utilizing Maltego and Recon-ng to build automated data-collection workflows, such as harvesting corporate structures and mapping employee profiles to corporate email syntax patterns.
+    *   *MITRE ATT&CK:* [T1593 - Search Open Websites/Domains](https://attack.mitre.org/techniques/T1593/)
+
+### 2. Initial Access Techniques
+*   **Phishing & Spear-Phishing:** Crafting highly targeted communication scenarios and setting up reverse-proxy infrastructure to capture credentials or deploy obfuscated payloads.
+    *   *MITRE ATT&CK:* [T1566.001 - Spearphishing Attachment](https://attack.mitre.org/techniques/T1566/001/)
+*   **Credential Access:** Executing password spraying and pass-the-hash attacks while managing account lockout thresholds.
+    *   *MITRE ATT&CK:* [T1110 - Brute Force](https://attack.mitre.org/techniques/T1110/)
+*   **Exploitation of Exposed Services:** Identifying and targeting misconfigured or unpatched edge devices, legacy services (RDP, SMB), or public applications.
+    *   *MITRE ATT&CK:* [T1190 - Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190/)
+
+### 3. Exploitation and Vulnerability Research
+*   **Exploit Development:** Understanding low-level execution mechanics, memory corruption fundamentals (buffer overflows), and modern system mitigations like ASLR/DEP.
+    *   *MITRE ATT&CK:* [T1068 - Exploitation for Privilege Escalation](https://attack.mitre.org/techniques/T1068/)
+*   **Web Application Exploitation:** Identifying and safely exploiting flaws within OWASP Top 10 categories, including SQL Injection (SQLi), Cross-Site Scripting (XSS), and CSRF.
+    *   *MITRE ATT&CK:* [T1190 - Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190/)
+*   **Privilege Escalation:** Assessing local system security postures to elevate context from low-privilege users to root/SYSTEM via kernel exploits or configuration flaws (e.g., SUID binaries).
+
+### 4. Lateral Movement and Persistence
+*   **Pivoting & Internal Movement:** Navigating internal network segments using authentication tokens, Pass-the-Ticket strategies, and Living off the Land Binaries (LOLBins) like PsExec.
+    *   *MITRE ATT&CK:* [T1021 - Remote Services](https://attack.mitre.org/techniques/T1021/)
+*   **Persistence Mechanisms:** Establishing durable access across reboots and configuration changes using scheduled tasks, registry modifications, or custom local backdoors.
+    *   *MITRE ATT&CK:* [T1547 - Boot or Logon Autostart Execution](https://attack.mitre.org/techniques/T1547/)
+
+### 5. Evasion Techniques
+*   **AV/EDR Bypassing:** Utilizing payload encoding, dynamic obfuscation, and encryption routines to minimize static and heuristic signatures.
+    *   *MITRE ATT&CK:* [T1027 - Obfuscated Files or Information](https://attack.mitre.org/techniques/T1027/)
+*   **Network Evasion:** Routing Command and Control (C2) communications through encrypted proxies, multi-hop networks, or legitimate domain fronting paths.
+    *   *MITRE ATT&CK:* [T1090 - Proxy](https://attack.mitre.org/techniques/T1090/)
+*   **Behavioral Evasion:** Blending malicious activities into standard OS processes using process hollowing or process masquerading techniques.
+    *   *MITRE ATT&CK:* [T1036 - Masquerading](https://attack.mitre.org/techniques/T1036/)
+
+---
+
+## 🛠️ Practical Application & Lab Milestones
+
+This repository acts as a laboratory ledger documenting the execution of the following specific exercises:
+
+### Lab 1: OSINT and Reconnaissance
+*   **Tools:** `Maltego`, `Recon-ng`, `Shodan`
+*   **Objectives:** Automated subdomain enumeration, mapping public infrastructure, and running programmatic queries against global asset registers.
+*   **Sample Artifact Log:**
+    | Subdomain | IP Address | Notes |
+    | :--- | :--- | :--- |
+    | `www.example.com` | `93.184.216.34` | Target corporate web landing page. |
+
+### Lab 2: Phishing Simulation
+*   **Tools:** `Gophish`, `Evilginx2`
+*   **Objectives:** Deploying an isolated reverse-proxy phishing framework to test session token handling and user awareness.
+*   **Sample Telemetry Log:**
+    | Timestamp | IP Address | Captured Asset | Risk Level | Assessment Notes |
+    | :--- | :--- | :--- | :--- | :--- |
+    | `2025-08-29 12:00:00` | `192.168.1.50` | `testuser / pass123` | High | Session established on test VM |
+
+### Lab 3: Vulnerability Exploitation
+*   **Tools:** `Metasploit Framework`, `Nmap`, `OWASP ZAP`
+*   **Objectives:** Mapping vulnerability landscapes on internal target machines (e.g., Metasploitable) and testing enterprise remediation pipelines.
+*   **Target Log:**
+    | Vulnerability | CVSS v3 Score | Vector Description | Mitigation Strategy |
+    | :--- | :--- | :--- | :--- |
+    | Struts RCE | 9.8 | Remote Code Execution via HTTP headers | Upgrade library dependencies to patched release |
+
+### Lab 4: Lateral Movement Exercise
+*   **Tools:** `Impacket Suite`, `Havoc C2 / Mythic C2` (Modern alternatives to Covenant)
+*   **Objectives:** Creating localized pivoting channels to pass execution commands between distinct hosts in an Active Directory sandbox.
+*   **Persistence Validation Log:**
+    | Technique | Tactic | Reference | Operational Purpose |
+    | :--- | :--- | :--- | :--- |
+    | Scheduled Task | Persistence | ATT&CK T1053 | Triggers secondary listener validation routine |
+
+### Lab 5: Social Engineering Lab
+*   **Tools:** `Social-Engineer Toolkit (SET)`, `PhoneInfoga`, `Maltego`
+*   **Objectives:** OSINT gathering via communications footprints, compiling targeted identity maps, and drafting technical scenario scripts for authorized vishing tests.
+
+### Lab 6: Exploit Development Basics
+*   **Tools:** `GDB (GNU Debugger)`, `radare2`
+*   **Objectives:** Binary analysis of classic memory flaws in unmitigated Linux executable binaries, verifying EIP/RIP register overwrites, and validating functional proof-of-concept shellcode payloads.
+
+### Lab 7: Post-Exploitation and Exfiltration
+*   **Tools:** `Mimikatz`, `Exfiltool`, custom DNS exfiltration scripts
+*   **Objectives:** Assessing LSASS memory extraction vulnerabilities inside isolated Windows environments and evaluating corporate data loss prevention systems using alternative data channels like DNS tunneling.
+
+### Lab 8: Red Team Report Creation
+*   **Tools:** `Draw.io`, Documentation Frameworks
+*   **Objectives:** Compiling detailed, industry-standard assessment deliverables that translate highly complex exploit chains into structured attack flow diagrams, technical findings matrices, and strategic executive recommendations.
+
+---
+
+## 🏆 Capstone Project: End-to-End Adversarial Simulation
+
+The final milestone documents a comprehensive, full-lifecycle attack simulation executed across an isolated multi-host infrastructure topology. This simulation evaluates both offensive execution mechanics and corresponding blue-team detection paths.
+
+### 🔴 Attack Lifecycle Mapping
+| Phase | Tooling Implemented | Execution Description | Reference Technique |
+| :--- | :--- | :--- | :--- |
+| Reconnaissance | `Recon-ng` | Target perimeter discovery & subdomain mapping | MITRE T1595 |
+| Initial Access | `Gophish` | Spear-phishing execution against laboratory user accounts | MITRE T1566 |
+| Lateral Movement | `Impacket` | Remote execution via authenticated service creation | MITRE T1021 |
+
+### 🔵 Detection & Defensive Analysis Log
+The telemetry generated during this simulation was cross-referenced with a centralized **Wazuh SIEM** node to validate alerting effectiveness:
+
+| Alert Timestamp | SIEM Event Engine Description | Source Vector IP | Rule Context Notes |
+| :--- | :--- | :--- | :--- |
+| `2025-08-29 13:00:00` | Suspicious Windows Service Installation | `192.168.1.50` | Detected lateral movement attempt |
+
+---
+
+## ⚠️ Disclaimer
+This repository is created exclusively for educational, research, and authorized security testing purposes. All exercises and methodologies detailed within this project were performed inside controlled, isolated laboratory environments with explicit authorization. Unauthorized targeting of networks or infrastructure remains strictly illegal.
